@@ -1,0 +1,46 @@
+<ion-content [fullscreen]="true">
+
+  <div id="container">
+
+    <div class="fila">
+      <ion-button color="light" style="display: flex; flex-direction: column;"><img width="100%" style="margin: 4%;" src="../../../assets/imagenes/encuesta.png"
+        (click)="encuesta()"></ion-button>      
+    </div>
+
+    <div class="fila">
+      <div *ngIf="tipoUsuarioActivo=='metre'"><!-- HAY QUE ARREGLAR EL ALTA DE CLIENTE, ¿qué pasa despues que un METRE le da el alta? -->
+      <ion-button color="light" style="display: flex; flex-direction: column;"><img width="100%" style="margin: 4%;" src="../../../assets/imagenes/cliente.png" (click)="enviar('cliente')"></ion-button>
+      </div>
+      <div *ngIf="tipoUsuarioActivo=='mozo'">
+      <ion-button color="light" style="display: flex; flex-direction: column;"><img width="100%" style="margin: 4%;" src="../../../assets/imagenes/estadoMesas.png" (click)="enviar('mesas')"></ion-button>
+      </div>
+      <div *ngIf="tipoUsuarioActivo=='bartender'">
+      <ion-button color="light" style="display: flex; flex-direction: column;"><img width="100%" style="margin: 4%;" src="../../../assets/imagenes/bebidaNueva.png" (click)="enviar('bebida')"></ion-button>
+      </div>
+      <div *ngIf="tipoUsuarioActivo=='cocinero'">
+      <ion-button color="light" style="display: flex; flex-direction: column;"><img width="100%" style="margin: 4%;" src="../../../assets/imagenes/plato.png" (click)="enviar('plato')"></ion-button>
+      </div>
+
+      <div *ngIf="tipoUsuarioActivo != 'metre'">
+        <ion-button color="light" style="display: flex; flex-direction: column;"><img width="100%" style="margin: 4%;" src="../../../assets/imagenes/listaPedidos.png" (click)="enviar('pedidos')"></ion-button>
+      </div>
+
+      <div *ngIf="tipoUsuarioActivo == 'metre'">
+        <ion-button color="light" style="display: flex; flex-direction: column;"><img width="100%" style="margin: 4%;" src="../../../assets/imagenes/listaEspera.png" (click)="enviar('espera')"></ion-button>
+      </div>
+          
+    </div>
+    <!-- <div class="fila">
+      <ion-button color="light" style="display: flex; flex-direction: column;"><img width="100%" style="margin: 4%;" src="../../../assets/imagenes/empleado.png"
+        (click)="registro('empleado')"></ion-button>
+          
+      <ion-button color="light"><img width="100%" style="margin: 4%;" src="../../../assets/imagenes/clientes.png"
+          ></ion-button>
+    </div> -->
+
+
+  </div>
+
+
+
+</ion-content>

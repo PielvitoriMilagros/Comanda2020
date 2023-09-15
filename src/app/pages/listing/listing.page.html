@@ -1,0 +1,29 @@
+
+<ion-header [translucent]="true" class="header">
+
+  <app-navbar (perfilUsuarioActivoOutput)="recibirPerfil($event)" [pagina]="this.pagina"></app-navbar>
+
+</ion-header>
+
+<ion-content>
+  <div *ngIf="tipoListado == 'clientes'">
+    <app-listado-clientes [tipoListado]="this.tipoListado"></app-listado-clientes>
+  </div>
+
+  <div *ngIf="tipoListado == 'espera'">
+    <app-listado-espera [tipoListado]="this.tipoListado"></app-listado-espera>
+  </div>
+
+  <div *ngIf="tipoListado == 'menu'">
+    <app-listado-productos [tipoListado]="this.tipoListado"></app-listado-productos>
+  </div>
+
+  <div *ngIf="tipoListado == 'pedidos'">
+    <app-listado-pedidos [tipoListado]="this.tipoListado"></app-listado-pedidos>
+  </div>
+
+  <div *ngIf="tipoListado == 'mesas'">
+    <app-listado-mesas [tipoListado]="this.tipoListado"></app-listado-mesas>
+  </div>
+
+</ion-content>

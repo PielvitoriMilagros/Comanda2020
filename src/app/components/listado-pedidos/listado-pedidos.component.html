@@ -1,0 +1,180 @@
+<div id="container">
+  <div *ngIf="usuarioBDActivoTIPO != 'registrado' && usuarioBDActivoTIPO != 'anonimo'">
+
+
+    <ion-card class="ion-text-center card">
+
+      <ion-card-header>
+        <ion-card-title *ngIf="usuarioBDActivoTIPO == 'mozo'">PEDIDOS</ion-card-title>
+        <ion-card-title *ngIf="usuarioBDActivoTIPO == 'bartender'">BEBIDAS PENDIENTES</ion-card-title>
+        <ion-card-title *ngIf="usuarioBDActivoTIPO == 'cocinero'">PLATOS PENDIENTES</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <ion-grid class="grilla">
+
+
+          <ion-row>
+            <ion-col
+              *ngIf="listadoProductosPedidosPorTipo == []  && usuarioBDActivoTIPO != 'mozo' || listadoPedidosNoCerrados == [] && usuarioBDActivoTIPO == 'mozo' "
+              size="12">
+              <p>Aún no hay pedidos que requieran atención por parte del {{usuarioBDActivoTIPO}}.</p>
+            </ion-col>
+          </ion-row>
+
+          <div *ngIf="usuarioBDActivoTIPO != 'mozo'">
+
+            <ion-row *ngFor="let item of listadoProductosPedidosPorTipo">
+
+              <ion-col size="4">
+                <img src="{{item.foto}}" alt="foto" style="margin: 1%;" width="60%">
+              </ion-col>
+
+              <ion-col size="6">
+                <p>{{item.nombre}} x{{item.cantidad}}</p>
+              </ion-col>
+
+              <!-- <ion-col size="2">
+          <p>${{item.precio*item.cantidad}}</p>
+        </ion-col> -->
+
+              <ion-col size="2">
+                <ion-button id="finalizar" size="small" color="success" (click)="finalizar(item)">
+                  <ion-icon name="checkmark-circle-outline"></ion-icon>
+                </ion-button>
+
+              </ion-col>
+
+            </ion-row>
+
+          </div>
+
+
+          <div *ngIf="usuarioBDActivoTIPO == 'mozo'">
+
+            <div *ngFor="let pedido of listadoPedidosNoCerrados">
+
+              <ion-row>
+
+                <ion-col size="7">
+                  <p>Pedido mesa: {{pedido.mesa}}</p>
+                </ion-col>
+
+                <ion-col size="3">
+                  <p>${{pedido.total}}</p>
+                </ion-col>
+
+                <ion-col *ngIf="pedido.estado == 'noaprobado'" size="2">
+                  <ion-button id="finalizar" size="small" color="primary" (click)="confirmar(pedido)">
+                    <ion-icon name="star-outline"></ion-icon>
+                  </ion-button>
+                </ion-col>
+                <ion-col *ngIf="pedido.estado == 'pendiente'" size="2">
+                  <ion-button class="sombra" id="finalizar" size="small" color="warning" disabled>
+                    <ion-icon name="timer-outline"></ion-icon>
+                  </ion-button>
+                </ion-col>
+                <ion-col *ngIf="pedido.estado == 'entregado' || pedido.estado == 'recibido'" size="2">
+                  <ion-button class="sombra" id="finalizar" size="small" color="success" disabled>
+                    <ion-icon name="checkmark-done-outline"></ion-icon>
+                  </ion-button>
+                </ion-col>
+                <ion-col *ngIf="pedido.estado == 'finalizado'" size="2">
+                  <ion-button id="finalizar" size="small" color="success" (click)="entregar(pedido)">
+                    <ion-icon name="arrow-redo-outline"></ion-icon>
+                  </ion-button>
+                </ion-col>
+                <ion-col *ngIf="pedido.estado == 'pagado'" size="2">
+                  <ion-button id="finalizar" size="small" color="success" (click)="cerrar(pedido)">
+                    <ion-icon name="logo-usd"></ion-icon>
+                  </ion-button>
+                </ion-col>
+
+              </ion-row>
+
+              <ion-row *ngFor="let producto of pedido.nombres; let indice=index">
+                <ion-col size="7">
+                  {{producto}} x{{pedido.cantidades[indice]}}
+                </ion-col>
+                <ion-col size="5">
+                  <p *ngIf="pedido.estadoProductos[indice] == 'pendiente'">
+                    <ion-icon name="timer-outline"></ion-icon>
+                  </p>
+                  <p *ngIf="pedido.estadoProductos[indice] == 'finalizado'">
+                    <ion-icon name="checkmark-outline"></ion-icon>
+                  </p>
+                </ion-col>
+
+              </ion-row>
+
+            </div>
+
+          </div>
+
+
+
+
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+
+  </div>
+
+
+  <div *ngIf="usuarioBDActivoTIPO == 'registrado' || usuarioBDActivoTIPO == 'anonimo'">
+
+
+    <ion-card *ngFor="let pedido of pedidosDelCliente ; let nume=index" class="ion-text-center card">
+
+      <ion-card-header>
+        <ion-card-title>PEDIDO #{{nume+1}}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <ion-grid class="grilla">
+
+          <ion-row>
+            <ion-col *ngIf="pedido.estado == 'noaprobado'" size="12">
+              <p>El pedido aún no fue aprobado</p>
+            </ion-col>
+            <ion-col *ngIf="pedido.estado != 'noaprobado'" size="12">
+              <p>El pedido está {{pedido.estado}}</p>
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngFor="let producto of pedido.nombres; let indice=index">
+            <ion-col size="7">
+              {{producto}} x{{pedido.cantidades[indice]}}
+            </ion-col>
+            <ion-col size="5">
+              <p *ngIf="pedido.estadoProductos[indice] == 'pendiente'">
+                <ion-icon name="timer-outline"></ion-icon>
+              </p>
+              <p *ngIf="pedido.estadoProductos[indice] == 'finalizado'">
+                <ion-icon name="checkmark-outline"></ion-icon>
+              </p>
+            </ion-col>
+
+          </ion-row>
+
+          <ion-row *ngIf="pedido.estado == 'entregado'">
+            <ion-col size="12">
+              <ion-button id="recibir" size="small" color="success" (click)="recibir(pedido)">
+                Marcar como recibido
+              </ion-button>
+            </ion-col>
+          </ion-row>
+
+
+
+
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+
+  </div>
+</div>

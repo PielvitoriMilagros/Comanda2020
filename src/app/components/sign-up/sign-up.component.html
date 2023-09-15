@@ -1,0 +1,133 @@
+<form>
+  <ion-card class="ion-text-center card">
+    <ion-card-header>
+
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <div class="form-group row">
+        <img src="{{imagenCargada}}" alt="foto-de-perfil" width="50%" (click)="tomarFoto()">
+      </div>
+
+      <!-- <p>{{datoLeido}}</p> -->
+
+      <ion-button *ngIf="tipo != 'anonimo'" (click)="escanear()" size="large" color="warning">CARGAR DATOS <ion-icon
+        name="qr-code-outline"></ion-icon>
+    </ion-button>
+
+      <ion-item *ngIf="perfilAlta=='cliente'" style="margin-bottom: 3%;">
+        <ion-icon name="folder-outline" slot="start"></ion-icon>
+        <ion-label>Tipo de Cliente</ion-label>
+        <ion-select interface="action-sheet" name="tipoCliente" id="tipoCliente" [(ngModel)]="tipo">
+          <ion-select-option value="anonimo">Anónimo</ion-select-option>
+          <ion-select-option value="registrado">Registrado</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <div *ngIf="perfilAlta=='cliente'"  class="form-group row">
+        <ion-item style="margin-bottom: 3%; margin-top: 3%;">
+          <ion-icon name="mail" slot="start"></ion-icon>
+          <ion-input type="email" class="form-control" placeholder="Ingrese un nombre de usuario"
+            [(ngModel)]="nick" name="usuario"></ion-input>
+        </ion-item>
+      </div>
+
+      <div *ngIf="tipo != 'anonimo'">
+        <div class="form-group row">
+          <ion-item style="margin-bottom: 3%;">
+            <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+            <ion-input type="text" class="form-control" placeholder="Ingrese nombre" [(ngModel)]="nombre" name="nombre">
+            </ion-input>
+          </ion-item>
+        </div>
+        <div class="form-group row">
+          <ion-item style="margin-bottom: 3%;">
+            <ion-icon name="person-circle" slot="start"></ion-icon>
+            <ion-input type="text" class="form-control" placeholder="Ingrese apellido" [(ngModel)]="apellido"
+              name="apellido"></ion-input>
+          </ion-item>
+        </div>
+        <div class="form-group row">
+          <ion-item style="margin-bottom: 3%;">
+            <ion-icon name="finger-print" slot="start"></ion-icon>
+            <ion-input type="text" class="form-control" placeholder="Ingrese nro de DNI" [(ngModel)]="dni" name="dni">
+            </ion-input>
+          </ion-item>
+        </div>
+
+
+        <div *ngIf="perfilAlta!= 'cliente'" class="form-group row">
+          <ion-item style="margin-bottom: 3%;">
+            <ion-icon name="shield-checkmark-outline" slot="start"></ion-icon>
+            <ion-input type="text" class="form-control" placeholder="Ingrese nro de CUIL" [(ngModel)]="cuil"
+              name="cuil">
+            </ion-input>
+          </ion-item>
+        </div>
+
+        <ion-item style="margin-bottom: 3%;">
+          <ion-icon name="transgender-outline" slot="start"></ion-icon>
+          <ion-label>Sexo</ion-label>
+          <ion-select interface="action-sheet" name="sexoEmpleado" id="sexoEmpleado" [(ngModel)]="sexo">
+            <ion-select-option value="Femenino">Femenino</ion-select-option>
+            <ion-select-option value="Masculino">Masculino</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- AGREGAR TIPO SI CORRESPONDE -->
+        <ion-item *ngIf="perfilAlta=='empleado'" style="margin-bottom: 3%;">
+          <ion-icon name="folder-outline" slot="start"></ion-icon>
+          <ion-label>Tipo de Empleado</ion-label>
+          <ion-select interface="action-sheet" name="tipoEmpleado" id="tipoEmpleado" [(ngModel)]="tipo">
+            <ion-select-option value="mozo">Mozo</ion-select-option>
+            <ion-select-option value="cocinero">Cocinero</ion-select-option>
+            <ion-select-option value="bartender">Bartender</ion-select-option>
+            <ion-select-option value="metre">Metre</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- <ion-item *ngIf="perfilAlta=='cliente'"  style="margin-bottom: 3%;">
+              <ion-icon name="folder-outline" slot="start"></ion-icon>
+              <ion-label>Tipo de usuario</ion-label>
+              <ion-select value="Anonimo" interface="action-sheet" name="tipoEmpleado" id="tipoEmpleado" [(ngModel)]="tipo">
+                <ion-select-option *ngFor="let item of tipoClientes" [value]=item>{{item}}</ion-select-option>
+              </ion-select>
+            </ion-item> -->
+        <div class="form-group row">
+          <ion-item style="margin-bottom: 3%; margin-top: 3%;">
+            <ion-icon name="mail" slot="start"></ion-icon>
+            <ion-input type="email" class="form-control" placeholder="Ingrese su correo electrónico"
+              [(ngModel)]="usuario" name="usuario"></ion-input>
+          </ion-item>
+        </div>
+
+        <div class="form-group row">
+          <ion-item style="margin-bottom: 3%;">
+            <ion-icon name="lock-closed" slot="start"></ion-icon>
+            <ion-input type="password" class="form-control" placeholder="Ingrese clave" [(ngModel)]="clave"
+              name="clave">
+            </ion-input>
+          </ion-item>
+        </div>
+
+        <div class="form-group row">
+          <ion-item style="margin-bottom: 3%;">
+            <ion-icon name="key" slot="start"></ion-icon>
+            <ion-input type="password" class="form-control" placeholder="Reingrese clave" [(ngModel)]="claveDos"
+              name="claveDos"></ion-input>
+          </ion-item>
+        </div>
+      </div>
+
+      <ion-button id="registroButton" style="margin-bottom: 5%;" size="large" expand="block" color="success"
+        (click)="validarRegistro()">Registrar Usuario</ion-button>
+      <!-- <ion-button color="danger" size="small" expand="block" [routerLink]="['/home']">Volver</ion-button> -->
+
+
+    </ion-card-content>
+  </ion-card>
+
+
+
+</form>

@@ -1,0 +1,66 @@
+<div id="container">
+<ion-card class="ion-text-center card">
+
+  <ion-card-header style="background-color: rgb(153, 189, 209);">
+    <ion-card-title>MESAS</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+
+    <ion-grid class="grilla">
+
+      <ion-row>
+      <ion-col size="3">
+        <p style="font-weight: 700;">Número</p>
+      </ion-col>
+      <ion-col size="6">
+        <p style="font-weight: 700;">Estado</p>
+      </ion-col>
+      <ion-col size="3">
+        <p style="font-weight: 700;">Consulta</p>
+      </ion-col>
+    </ion-row>
+
+
+      <ion-row *ngFor="let item of listadoMesas">
+
+        <!-- <ion-col size="4">
+          <img src="{{item.fotoDos}}" alt="fotoDos" style="margin: 1%;" width="60%"
+            (click)="opciones(item,item.fotoDos)">
+        </ion-col> -->
+
+        <ion-col size="3">
+          <p>{{item.numero}}</p>
+        </ion-col>
+
+        <ion-col size="6">
+          <p class="capitalize">{{item.estado}}</p>
+        </ion-col>
+
+        <div *ngIf="item.consulta != null && item.consulta != undefined">
+          <ion-col size="3">
+            <ion-button id="verConsulta" size="medium" color="danger" shape="round" (click)="verConsulta(item)"><ion-icon name="alert-outline"></ion-icon></ion-button>
+          </ion-col>
+        </div>
+        <div *ngIf="item.consulta == null || item.consulta == undefined">
+          <ion-col size="3">
+            <ion-button class="sombra" size="medium" color="success" shape="round" disabled><ion-icon name="checkmark-done-outline"></ion-icon></ion-button>
+          </ion-col>
+        </div>
+
+        <!-- <ion-col size="2">
+          <ion-button id="borrar" size="small" color="danger" (click)="borrarProducto(item)"><ion-icon name="close-circle-outline"></ion-icon></ion-button>
+            
+        </ion-col> -->
+
+      </ion-row>
+
+
+
+    </ion-grid>
+
+
+  </ion-card-content>
+
+</ion-card>
+</div>

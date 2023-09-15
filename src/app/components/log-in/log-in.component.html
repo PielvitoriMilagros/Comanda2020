@@ -1,0 +1,78 @@
+<body class="centrado">
+
+  <div *ngIf="!usuarioActivo">
+
+    <div id="container">
+      <form>
+        <ion-card class="ion-text-center card">
+          <img src="../../../assets/imagenes/user.png" width="40%" alt="">
+          <!-- <ion-card-header>
+            <ion-card-title>Ingreso</ion-card-title>
+          </ion-card-header> -->
+
+          <ion-card-content>
+
+            <div class="form-group row">
+              <ion-item style="margin-bottom: 8%;">
+                <ion-icon name="person-circle" slot="start"></ion-icon>
+                <ion-input type="email" class="form-control" placeholder="Ingrese su correo electrónico"
+                  [(ngModel)]="usuario" name="usuario"></ion-input>
+              </ion-item>
+            </div>
+
+            <div class="form-group row">
+              <ion-item style="margin-bottom: 8%;">
+                <ion-icon name="lock-closed" slot="start"></ion-icon>
+                <ion-input type="password" class="form-control" placeholder="Ingrese clave" [(ngModel)]="clave"
+                  name="clave"></ion-input>
+              </ion-item>
+            </div>
+
+            <div class="form-group row">
+            <ion-button style="margin-bottom: 5%;" size="large" color="warning" (click)="validarUsuario()"><strong>Ingresar</strong></ion-button>
+            <ion-button style="margin-bottom: 5%;" size="large" color="tertiary" (click)="registrarUsuario()"><strong>Registrar</strong></ion-button>
+          </div>
+
+
+          
+        </ion-card-content>
+        </ion-card>
+
+      </form>
+      <ion-card *ngIf="mostrar" class="error">
+        <ion-card-header>
+          <ion-title class="titulo">Error</ion-title>
+        </ion-card-header>
+        <ion-card-content>
+          {{mensaje}}
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    </div>
+
+    
+
+    <ion-fab vertical="top" horizontal="start" slot="fixed">
+      <ion-fab-button color="light">
+        <ion-icon name="people-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="bottom">
+        <ion-fab-button (click)="cargarUser('User1')">DU</ion-fab-button>
+        <ion-fab-button (click)="cargarUser('User2')">CL</ion-fab-button>
+        <ion-fab-button (click)="cargarUser('User3')">BT</ion-fab-button>
+        <!-- <ion-fab-button (click)="cargarUser('User4')">AN</ion-fab-button> -->
+        <ion-fab-button (click)="cargarUser('User5')">MO</ion-fab-button>
+        <ion-fab-button (click)="cargarUser('User6')">ME</ion-fab-button>
+        <ion-fab-button (click)="cargarUser('User7')">CO</ion-fab-button>
+        <!-- <ion-fab-button (click)="cargarUser('User1')"><ion-icon name="construct-sharp"></ion-icon></ion-fab-button>
+        <ion-fab-button (click)="cargarUser('User2')"><ion-icon name="person-add-sharp"></ion-icon></ion-fab-button>
+        <ion-fab-button (click)="cargarUser('User3')"><ion-icon name="body-sharp"></ion-icon></ion-fab-button>
+        <ion-fab-button (click)="cargarUser('User4')"><ion-icon name="help-circle-sharp"></ion-icon></ion-fab-button>
+        <ion-fab-button (click)="cargarUser('User5')"><ion-icon name="bug-sharp"></ion-icon></ion-fab-button> -->
+      </ion-fab-list>
+    </ion-fab>
+
+
+
+</body>

@@ -1,0 +1,21 @@
+<ion-header [translucent]="true" class="header">
+
+<app-navbar (perfilUsuarioActivoOutput)="recibirPerfil($event)" [pagina]="this.pagina"></app-navbar>
+
+</ion-header>
+
+
+
+
+<ion-content [fullscreen]="true">
+
+  <div *ngIf="perfilUsuarioActivo == 'empleado'">
+    <app-encuesta-empleado [perfilResponde]="this.perfilUsuarioActivo"></app-encuesta-empleado>
+  </div>
+
+  <div *ngIf="perfilUsuarioActivo == 'cliente'">
+    <app-encuesta-cliente [perfilResponde]="this.perfilUsuarioActivo"></app-encuesta-cliente>
+  </div>
+
+
+</ion-content>

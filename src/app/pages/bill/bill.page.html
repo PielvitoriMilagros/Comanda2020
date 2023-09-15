@@ -1,0 +1,13 @@
+
+<ion-header [translucent]="true" class="header">
+
+  <app-navbar (perfilUsuarioActivoOutput)="recibirPerfil($event)" [pagina]="this.pagina"></app-navbar>
+
+</ion-header>
+
+<ion-content>
+  
+  <!-- <app-cuenta (parametroEnviado)="recibirParametro($event)"></app-cuenta> -->
+  <app-cuenta></app-cuenta>
+
+</ion-content>

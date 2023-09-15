@@ -1,0 +1,67 @@
+<div id="container">
+
+  <!-- <img style="display: block; margin: auto;" src="" width="50%" alt=""> -->
+
+  
+  <h2 class="titulo">
+    LISTADO DE CLIENTES
+  </h2>
+  
+  <ion-grid class="grilla">
+
+      <ion-row class="titulos">
+        <ion-col size="3">
+          <div>
+            <strong>Foto</strong>
+          </div>
+        </ion-col>
+        <!-- <ion-col size="3">
+          <div>
+            <strong>Nombre</strong>
+          </div>
+        </ion-col> -->
+        <ion-col size="6">
+          <div>
+            <strong>Correo</strong>
+          </div>
+        </ion-col>
+        <ion-col size="3">
+          <div>
+            <strong>Estado</strong>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngFor="let item of listadoClientesReg">
+        <ion-col size="3">
+          <img src="{{item.foto}}" alt="foto" width="60%">
+        </ion-col>
+        <!-- <ion-col size="3">
+          <div>
+            {{item.nombre}}
+          </div>
+        </ion-col> -->
+        <ion-col size="6">
+          <div>
+            {{item.correo}}
+          </div>
+        </ion-col>
+        <ion-col size="3">
+          <div *ngIf="item.aprobado == true">
+            <ion-button color="success" size="small" disabled><ion-icon name="checkmark-circle-outline"></ion-icon></ion-button>
+          </div>
+          <div *ngIf="item.aprobado == false">
+            <ion-button color="danger" size="small" disabled><ion-icon name="close-circle-outline"></ion-icon></ion-button>
+          </div>
+          <div *ngIf="item.aprobado == null">
+            <ion-button color="warning" size="small" (click)="aprobarCliente(item)"><ion-icon name="alert-circle-outline"></ion-icon></ion-button>
+          </div>
+        </ion-col>
+
+      </ion-row>
+
+    </ion-grid>
+      
+      
+      
+    </div>

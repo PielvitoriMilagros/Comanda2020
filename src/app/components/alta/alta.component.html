@@ -1,0 +1,55 @@
+<form>
+  <ion-card class="ion-text-center card">
+    <ion-card-header>
+
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <div class="form-group row">
+        <img src="{{imagenUno}}" alt="foto-uno" width="30%" (click)="tomarFoto(1)">
+        <img src="{{imagenDos}}" alt="foto-dos" width="30%" (click)="tomarFoto(2)">
+        <img src="{{imagenTres}}" alt="foto-tres" width="30%" (click)="tomarFoto(3)">
+      </div>
+
+
+        <div class="form-group row">
+          <ion-item style="margin-bottom: 3%;">
+            <ion-icon name="fast-food-outline" slot="start"></ion-icon>
+            <ion-input type="text" class="form-control" placeholder="Nombre producto" [(ngModel)]="nombre" name="nombre">
+            </ion-input>
+          </ion-item>
+        </div>
+        <div class="form-group row">
+          <ion-item style="margin-bottom: 3%;">
+            <ion-icon name="document-text-outline" slot="start"></ion-icon>
+            <ion-textarea type="text" class="form-control" placeholder="Descripción" [(ngModel)]="descripcion"
+              name="descripcion"></ion-textarea>
+          </ion-item>
+        </div>
+        <div class="form-group row">
+          <ion-item style="margin-bottom: 3%;">
+            <ion-icon name="time-outline" slot="start"></ion-icon>
+            <ion-input type="number" class="form-control" placeholder="Tiempo de preparación" [(ngModel)]="tiempo" name="tiempo">
+            </ion-input>
+          </ion-item>
+        </div>
+        <div class="form-group row">
+          <ion-item style="margin-bottom: 3%;">
+            <ion-icon name="logo-usd" slot="start"></ion-icon>
+            <ion-input type="number" class="form-control" placeholder="Precio" [(ngModel)]="precio" name="precio">
+            </ion-input>
+          </ion-item>
+        </div>
+
+
+      <ion-button id="altaButton" style="margin-bottom: 5%;" size="large" expand="block" color="success"
+        (click)="validarAlta()">Alta Producto</ion-button>
+
+
+    </ion-card-content>
+  </ion-card>
+
+
+
+</form>

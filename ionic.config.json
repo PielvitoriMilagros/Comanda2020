@@ -1,0 +1,7 @@
+{
+  "name": "laComanda",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

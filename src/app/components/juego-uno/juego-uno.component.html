@@ -1,0 +1,96 @@
+<div id="container">
+
+  <ion-card class="ion-text-center card">
+
+    <ion-card-header>
+      <ion-card-title>ORDENA LOS DADOS</ion-card-title>
+    </ion-card-header>
+
+
+
+    <ion-card-content *ngIf="iniciado">
+      <ion-grid class="grilla">
+
+        <ion-row>
+          <ion-col size="12">
+            <ion-button id="verde" style="margin: 1%;" size="medium" color="success" (click)="verificar('verde')">
+              <ion-icon name="dice-outline"></ion-icon>
+            </ion-button>
+            <ion-button id="amarillo" style="margin: 1%;" size="medium" color="warning" (click)="verificar('amarillo')">
+              <ion-icon name="dice-outline"></ion-icon>
+            </ion-button>
+            <ion-button id="azul" style="margin: 1%;" size="medium" color="primary" (click)="verificar('azul')">
+              <ion-icon name="dice-outline"></ion-icon>
+            </ion-button>
+            <ion-button id="negro" style="margin: 1%;" size="medium" color="dark" (click)="verificar('negro')">
+              <ion-icon name="dice-outline"></ion-icon>
+            </ion-button>
+            <ion-button id="rojo" style="margin: 1%;" size="medium" color="danger" (click)="verificar('rojo')">
+              <ion-icon name="dice-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-card-content>
+
+
+    <ion-card-content *ngIf="!iniciado">
+            <ion-button id="rojo" style="margin: 1%;" size="large" color="success" (click)="iniciar()">
+              <ion-icon name="star"></ion-icon> INICIAR JUEGO <ion-icon name="star"></ion-icon>
+            </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+
+
+
+
+
+  <ion-card  *ngIf="iniciado" class="ion-text-center card">
+
+    <ion-card-header>
+      <ion-card-title>INTENTOS <ion-button color="warning" (click)="respuesta()"><ion-icon name="help-outline"></ion-icon></ion-button></ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid class="grilla">
+
+        <ion-row>
+          <ion-col size="1">
+            <p>N</p>
+          </ion-col>
+
+          <ion-col size="8">
+            <p>Orden</p>
+          </ion-col>
+
+          <ion-col size="3">
+            <p>Acierto</p>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngFor="let item of tablaAyudas">
+
+          <ion-col size="1">
+            {{item.intentos}}
+          </ion-col>
+
+          <ion-col size="8">
+            {{item.eleccion}}
+          </ion-col>
+
+          <ion-col size="3">
+            {{item.mensaje}}
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+
+      
+    </ion-card-content>
+  </ion-card>
+  
+
+
+</div>

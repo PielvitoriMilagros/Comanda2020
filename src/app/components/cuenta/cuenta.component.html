@@ -1,0 +1,128 @@
+<div id="container">
+
+  <div *ngIf="usuarioBDActivoTIPO == 'registrado' || usuarioBDActivoTIPO == 'anonimo'">
+
+    <div *ngIf="pedidosDelCliente != undefined || pedidosDelCliente != null">
+
+
+      <ion-card *ngFor="let pedido of pedidosDelCliente ; let nume=index" class="ion-text-center card">
+
+        <ion-card-header>
+          <ion-card-title>TICKET PEDIDO #{{nume+1}}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+
+          <ion-grid class="grilla">
+
+            <ion-row>
+              <ion-col size="6">
+                <p>CONCEPTO</p>
+              </ion-col>
+              <ion-col size="3">
+                <p>P.U.</p>
+              </ion-col>
+              <ion-col size="3">
+                <p>P.T.</p>
+              </ion-col>
+            </ion-row>
+
+            <ion-row *ngFor="let producto of pedido.nombres; let indice=index">
+              <ion-col size="6">
+                <p style="color: rgb(30, 30, 109);">{{producto}} x{{pedido.cantidades[indice]}}</p>
+              </ion-col>
+              <ion-col size="3">
+                <p style="color: rgb(19, 19, 85);">${{pedido.precios[indice]}}</p>
+              </ion-col>
+              <ion-col size="3">
+                <p style="color: rgb(10, 10, 54);">${{pedido.precios[indice]*pedido.cantidades[indice]}}</p>
+              </ion-col>
+
+            </ion-row>
+            
+                        <ion-row>
+                          <ion-col size="9">
+                            <p style="color: rgb(19, 19, 85);">Descuento por el juego:</p>
+                          </ion-col>
+                          <ion-col size="3">
+                            <p *ngIf="pedido.descuento != 0 && pedido.descuento != null && pedido.descuento != undefined" style="color: rgb(10, 10, 54);">${{pedido.descuento}}</p>
+                            <p *ngIf="pedido.descuento == 0 || pedido.descuento == null || pedido.descuento == undefined" style="color: rgb(10, 10, 54);">$0</p>
+                          </ion-col>
+                        </ion-row>
+
+            <ion-row *ngIf="pedido.propina == null">
+              <ion-col size="12">
+                <ion-button id="propina" size="small" color="warning" (click)="propina(pedido)">
+                  Ingrese la propina
+                </ion-button>
+              </ion-col>
+            </ion-row>
+
+            <ion-row *ngIf="pedido.propina != null">
+              <ion-col size="9">
+                <p style="color: rgb(19, 19, 85);">Propina para el mozo:</p>
+              </ion-col>
+              <ion-col size="3">
+                <p style="color: rgb(10, 10, 54);">${{pedido.propina}}</p>
+              </ion-col>
+            </ion-row>
+
+            <!-- VER ACÁ EL TEMA DE LOS DESCUENTOS -->
+
+            <ion-row>
+              <ion-col size="6">
+                <p style="color: rgb(19, 19, 85);">TOTAL A PAGAR:</p>
+              </ion-col>
+              <ion-col size="6">
+                <p class="total"> ${{pedido.total}}</p>
+              </ion-col>
+            </ion-row>
+
+
+            <ion-col size="6">
+              <ion-button id="propina" size="large" color="success" (click)="pagar(pedido)">
+                $$$ PAGAR $$$
+              </ion-button>
+            </ion-col>
+
+
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+
+
+    </div>
+
+
+
+    <div *ngIf="pedidosDelCliente == undefined || pedidosDelCliente == null || pedidosDelCliente==[]">
+
+
+      <ion-card class="ion-text-center card">
+
+        <ion-card-header>
+          <ion-card-title>TICKETS DE PEDIDOS</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+
+          <ion-grid class="grilla">
+
+            <ion-row>
+              <ion-col size="12">
+                <p>Aún no tiene ningún pedido recibido para solicitar la cuenta.</p>
+              </ion-col>
+            </ion-row>
+
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+
+
+    </div>
+
+
+
+  </div>
+
+</div>

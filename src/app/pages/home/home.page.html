@@ -1,0 +1,34 @@
+
+<ion-header [translucent]="true" class="header">
+
+  <app-navbar (perfilUsuarioActivoOutput)="recibirPerfil($event)" (tipoUsuarioActivoOutput)="recibirTipo($event)" [pagina]="this.pagina"></app-navbar>
+
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+
+
+<div *ngIf="perfilUsuarioActivo == 'duenio'">
+  <app-perfil-duenio (perfilRegistrar)="recibirPerfilRegistrar($event)" (listaDe)="recibirParametro($event)"></app-perfil-duenio>
+
+</div>
+
+<div *ngIf="perfilUsuarioActivo == 'cliente'">
+  <app-perfil-cliente (parametroEnviado)="recibirParametro($event)"></app-perfil-cliente>
+
+</div>
+
+<div *ngIf="perfilUsuarioActivo == 'supervisor'">
+  <app-perfil-supervisor></app-perfil-supervisor>
+
+</div>
+
+<div *ngIf="perfilUsuarioActivo == 'empleado'">
+  <app-perfil-empleado (parametroEnviado)="recibirParametro($event)" [tipoUsuarioActivo]="this.tipoUsuarioActivo"></app-perfil-empleado>
+
+</div>
+
+
+
+</ion-content>
